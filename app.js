@@ -12,14 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan('dev'));
 
-
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
-
-if (require.main === module){
+if (require.main === module) {
   //will only run when run with npm start and not with npm test to avoid db syncing in multiple threads when running tests
   db
     .sync()
